@@ -358,6 +358,7 @@ class KvV2(VaultApiBase):
         max_versions=None,
         cas_required=None,
         delete_version_after="0s",
+        custom_metadata=None,
         mount_point=DEFAULT_MOUNT_POINT,
     ):
         """Updates the max_versions of cas_required setting on an existing path.
@@ -388,6 +389,8 @@ class KvV2(VaultApiBase):
         }
         if max_versions is not None:
             params["max_versions"] = max_versions
+        if custom_metadata is not None:
+            params["custom_metadata"] = custom_metadata
         if cas_required is not None:
             if not isinstance(cas_required, bool):
                 error_msg = (
